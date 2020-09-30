@@ -19,7 +19,7 @@ public class ArrayBlockingQueueBuffer<T> implements QueueBuffer<T> {
     @Override
     public boolean save(T data) {
         if (this.queue.remainingCapacity() <= 0) {
-            this.queue.clear();
+            throw new IllegalStateException("Save data to queue failure, queue buffer is full. size : " + this.queue.size());
         }
         return this.queue.add(data);
     }
