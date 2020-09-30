@@ -8,5 +8,68 @@
     <artifactId>data-wharf</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
+    <packaging>jar</packaging>
+    <scm>
+        <url>https://github.com/L-Angel/data-wharf.git</url>
+    </scm>
 
+    <developers>
+        <developer>
+            <email>lonelyangel.jcw@gmail.com</email>
+            <name>Rick Jiang</name>
+            <url>https://github.com/L-Angel;http://l-angel.fun/</url>
+        </developer>
+    </developers>
+
+    <properties>
+        <file.encoding>UTF-8</file.encoding>
+        <java.source.version>1.8</java.source.version>
+        <java.target.version>1.8</java.target.version>
+    </properties>
+
+
+    <build>
+        <finalName>data-wharf</finalName>
+        <directory>${basedir}/target</directory>
+        <!--        <scriptSourceDirectory>${basedirir}\src\main\scripts</scriptSourceDirectory>-->
+        <sourceDirectory>${basedir}\src\main\java</sourceDirectory>
+        <testSourceDirectory>${basedir}\src\test\java</testSourceDirectory>
+        <outputDirectory>${basedir}\target\classes</outputDirectory>
+
+        <resources>
+            <resource>
+                <targetPath>resources</targetPath>
+                <filtering>true</filtering>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <targetPath>resources</targetPath>
+                <filtering/>
+                <directory>src/test/resources</directory>
+                <includes/>
+                <excludes/>
+            </testResource>
+        </testResources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>${java.source.version}</source>
+                    <target>${java.target.version}</target>
+                    <encoding>${file.encoding}</encoding>
+                    <compilerArgument>-Xlint:all</compilerArgument>
+                    <showDeprecation>true</showDeprecation>
+                    <showWarnings>true</showWarnings>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
