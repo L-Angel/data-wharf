@@ -11,9 +11,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class DataWharf<D> {
 
-    public static DataWharf defaultInstance;
-
-    public static DataWharf trackerInstance;
+    public static DefaultDataWharf defaultInstance;
 
     private static final int DEFAULT_BUFFER_CHANNEL_SIZE = 3;
 
@@ -46,14 +44,6 @@ public class DataWharf<D> {
         return true;
     }
 
-    public boolean produce(D data, boolean needMerge) {
-        if (data instanceof WharfData) {
-            WharfData wd = (WharfData) data;
-            wd.setNeedMerge(needMerge);
-        }
-        return produce(data);
-    }
-
     /**
      * @param consumerKlass
      * @param size          启动的线程数
@@ -82,11 +72,11 @@ public class DataWharf<D> {
         this.consumerDrive = null;
     }
 
-    public static DataWharf getDefault() {
+    public static DefaultDataWharf getDefault() {
         if (defaultInstance == null) {
             synchronized (LOCK) {
                 if (defaultInstance == null) {
-                    defaultInstance = new DataWharf<>(DEFAULT_BUFFER_CHANNEL_SIZE, DEFAULT_BUFFER_SIZE);
+                    defaultInstance = new DefaultDataWharf(DEFAULT_BUFFER_CHANNEL_SIZE, DEFAULT_BUFFER_SIZE);
                 }
             }
         }

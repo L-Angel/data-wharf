@@ -1,19 +1,17 @@
-## Data Wharf
+package fun.langel.datawharf;
 
-#### 项目说明
- 本地缓存队列，参考skywalking data-carrier模块实现
+import org.junit.Test;
 
-#### 使用介绍
-
-```java
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author lonelyangel.jcw@gmail.com
  * @date 2020/10/5
- * 
+ *
  *
  * Thread : snake-datawharf-consumer-0
- * Data : 
+ * Data :
  * key-0 : value-0
  * key-3 : value-3
  * key-6 : value-6
@@ -28,7 +26,7 @@
  * key-3 : value-33
  * Thread : snake-datawharf-consumer-1
  * Thread : snake-datawharf-consumer-2
- * Data : 
+ * Data :
  * key-2 : value-2
  * key-5 : value-5
  * key-8 : value-8
@@ -41,7 +39,7 @@
  * key-9 : value-29
  * key-2 : value-32
  * key-5 : value-35
- * Data : 
+ * Data :
  * key-1 : value-1
  * key-4 : value-4
  * key-7 : value-7
@@ -55,9 +53,9 @@
  * key-1 : value-31
  * key-4 : value-34
  * Thread : snake-datawharf-consumer-2
- * Data : 
+ * Data :
  * Thread : snake-datawharf-consumer-0
- * Data : 
+ * Data :
  * key-8 : value-38
  * key-1 : value-41
  * key-4 : value-44
@@ -75,7 +73,7 @@
  * key-9 : value-39
  * key-2 : value-42
  * Thread : snake-datawharf-consumer-1
- * Data : 
+ * Data :
  * key-7 : value-37
  * key-0 : value-40
  * key-3 : value-43
@@ -101,7 +99,7 @@
  * key-2 : value-72
  * key-5 : value-75
  * Thread : snake-datawharf-consumer-2
- * Data : 
+ * Data :
  * key-7 : value-77
  * key-0 : value-80
  * key-3 : value-83
@@ -110,7 +108,7 @@
  * key-2 : value-92
  * key-5 : value-95
  * Thread : snake-datawharf-consumer-0
- * Data : 
+ * Data :
  * key-8 : value-78
  * key-1 : value-81
  * key-4 : value-84
@@ -120,7 +118,7 @@
  * key-6 : value-96
  * key-9 : value-99
  * Thread : snake-datawharf-consumer-1
- * Data : 
+ * Data :
  * key-6 : value-76
  * key-9 : value-79
  * key-2 : value-82
@@ -158,10 +156,3 @@ public class DataWharfTest {
         }
     }
 }
-
-```
-
-## Data Wharf
-
-#### Introduction
- Local cache queue, reference to module data-carrier in skywalking.
