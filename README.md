@@ -164,4 +164,4 @@ public class DataWharfTest {
 ## Data Wharf
 
 #### Introduction
- Local cache queue, reference to module data-carrier in skywalking.
+ Local async cache queue, reference to module data-carrier in skywalking.
