@@ -60,7 +60,7 @@ public class ConsumerDrive implements Drive {
                 Constructor<Consumer> constructor = (Constructor<Consumer>) this.consumerKlass.getConstructor();
                 constructor.setAccessible(true);
                 Consumer consumer = constructor.newInstance();
-                ConsumerThread ct = new ConsumerThread("snake-datawharf-consumer-" + idx, consumer, consumeIdle);
+                ConsumerThread ct = new ConsumerThread("data-wharf-consumer-" + idx, consumer, consumeIdle);
                 ct.addDataSource(this.channels.getQueueBuffer(idx % this.channels.getChannelSize()));
                 ct.start();
                 this.consumerThreads[idx] = ct;
