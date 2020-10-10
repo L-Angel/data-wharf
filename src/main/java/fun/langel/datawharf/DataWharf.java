@@ -29,10 +29,20 @@ public class DataWharf<D> {
 
     private static final Object TRACKER_LOCK = new Object();
 
+    /**
+     * @param channelSize channel number
+     * @param bufferSize  which channel has one buffer, that set buffer size of every channel.
+     */
     public DataWharf(int channelSize, int bufferSize) {
         this.channels = new Channels(channelSize, bufferSize, new SimpleRollingPartitioner<>());
     }
 
+    /**
+     * produce data
+     *
+     * @param data data object
+     * @return
+     */
     public boolean produce(D data) {
         if (data == null) {
             return false;
@@ -46,8 +56,8 @@ public class DataWharf<D> {
 
     /**
      * @param consumerKlass
-     * @param size          启动的线程数
-     * @param consumeIdle   ms,暂停时间
+     * @param size          the number of thread will start.
+     * @param consumeIdle   ms,consumer thread pause time.
      */
     public void consume(Class<? extends Consumer> consumerKlass, int size, int consumeIdle) {
         if (this.consumerDrive == null) {
@@ -64,6 +74,9 @@ public class DataWharf<D> {
         this.working.set(false);
     }
 
+    /**
+     * finish data wharf
+     */
     public void finish() {
         if (this.consumerDrive != null && this.consumerDrive.running()) {
             this.consumerDrive.finish();

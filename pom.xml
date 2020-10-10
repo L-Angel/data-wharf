@@ -6,8 +6,21 @@
 
     <groupId>fun.l-angel</groupId>
     <artifactId>data-wharf</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-
+    <version>0.0.1</version>
+    <name>Data Wharf</name>
+    <description>Data wharf, local async cache queue.</description>
+    <url>https://github.com/L-Angel/data-wharf</url>
+    <licenses>
+        <license>
+            <name>Apache License 2.0</name>
+            <url>https://github.com/L-Angel/data-wharf/blob/master/LICENSE</url>
+            <distribution>repo</distribution>
+            <comments>A permissive license whose main conditions require preservation of copyright and license notices.
+                Contributors provide an express grant of patent rights. Licensed works, modifications, and larger works
+                may be distributed under different terms and without source code.
+            </comments>
+        </license>
+    </licenses>
     <packaging>jar</packaging>
     <scm>
         <url>https://github.com/L-Angel/data-wharf.git</url>
@@ -76,6 +89,68 @@
             </testResource>
         </testResources>
         <plugins>
+            <!-- verify gpg, generate asc files. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <!-- verify gpg, generate asc files. -->
+                        <id>gpg</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <phase>compile</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <aggregate>true</aggregate>
+                    <tags>
+                        <tag>
+                            <name>date</name>
+                        </tag>
+                    </tags>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -107,21 +182,14 @@
     </repositories>
     <!--Jar Release Repository Address-->
     <distributionManagement>
-        <repository>
-            <id>sonatype-releases</id>
-            <name>Sonatype Release Repository</name>
-            <layout>legacy</layout>
-            <url>
-            </url>
-        </repository>
         <snapshotRepository>
-            <id>sonatype-snapshots</id>
-            <name>Sonatype Snapshot Repository</name>
-            <layout>legacy</layout>
-            <url>
-                https://oss.sonatype.org/content/repositories/snapshots
-            </url>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
     </distributionManagement>
-    
+
 </project>
