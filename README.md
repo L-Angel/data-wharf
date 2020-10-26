@@ -3,6 +3,14 @@
 #### 项目说明
  本地缓存队列，参考skywalking data-carrier模块实现
 
+#### Pom 引用
+```xml
+<dependency>
+  <groupId>fun.l-angel</groupId>
+  <artifactId>data-wharf</artifactId>
+</dependency>
+```
+
 #### 使用介绍
 
 ```java
